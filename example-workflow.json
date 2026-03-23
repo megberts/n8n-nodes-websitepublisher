@@ -1,0 +1,69 @@
+{
+	"name": "WebsitePublisher — New Lead Notification",
+	"nodes": [
+		{
+			"parameters": {
+				"triggerEvent": "newLead",
+				"formNameFilter": ""
+			},
+			"id": "trigger-1",
+			"name": "New Lead",
+			"type": "n8n-nodes-websitepublisher.websitePublisherTrigger",
+			"typeVersion": 1,
+			"position": [250, 300],
+			"credentials": {
+				"websitePublisherApi": {
+					"id": "1",
+					"name": "WebsitePublisher API"
+				}
+			}
+		},
+		{
+			"parameters": {
+				"resource": "lead",
+				"operation": "updateStatus",
+				"leadId": "={{ $json.id }}",
+				"newStatus": "contacted"
+			},
+			"id": "action-1",
+			"name": "Mark as Contacted",
+			"type": "n8n-nodes-websitepublisher.websitePublisher",
+			"typeVersion": 1,
+			"position": [500, 300],
+			"credentials": {
+				"websitePublisherApi": {
+					"id": "1",
+					"name": "WebsitePublisher API"
+				}
+			}
+		},
+		{
+			"parameters": {
+				"channel": "#leads",
+				"text": "🎯 New lead from WebsitePublisher!\n\n*Name:* {{ $('New Lead').item.json.name }}\n*Email:* {{ $('New Lead').item.json.email }}\n*Form:* {{ $('New Lead').item.json.form_name }}\n*Page:* {{ $('New Lead').item.json.page_slug }}\n*Date:* {{ $('New Lead').item.json.created_at }}"
+			},
+			"id": "action-2",
+			"name": "Slack Notification",
+			"type": "n8n-nodes-base.slack",
+			"typeVersion": 2,
+			"position": [500, 500]
+		}
+	],
+	"connections": {
+		"New Lead": {
+			"main": [
+				[
+					{ "node": "Mark as Contacted", "type": "main", "index": 0 },
+					{ "node": "Slack Notification", "type": "main", "index": 0 }
+				]
+			]
+		}
+	},
+	"settings": {
+		"executionOrder": "v1"
+	},
+	"meta": {
+		"templateId": "websitepublisher-lead-notification",
+		"description": "Automatically notifies your Slack channel when a new lead is captured on your WebsitePublisher.ai website, and marks the lead as contacted."
+	}
+}

@@ -1,0 +1,63 @@
+{
+	"name": "n8n-nodes-websitepublisher",
+	"version": "1.0.0",
+	"description": "n8n community node for WebsitePublisher.ai — AI-powered website publishing. Manage pages, data entities, assets, leads, forms, and integrations from your n8n workflows.",
+	"keywords": [
+		"n8n-community-node-package",
+		"n8n-nodes",
+		"website",
+		"publishing",
+		"AI",
+		"automation",
+		"CMS",
+		"websitepublisher"
+	],
+	"license": "MIT",
+	"homepage": "https://websitepublisher.ai",
+	"author": {
+		"name": "WebsitePublisher.ai (M25)",
+		"email": "info@websitepublisher.ai",
+		"url": "https://websitepublisher.ai"
+	},
+	"repository": {
+		"type": "git",
+		"url": "https://github.com/megberts/n8n-nodes-websitepublisher.git"
+	},
+	"main": "dist/index.js",
+	"scripts": {
+		"build": "tsc -p tsconfig.build.json && gulp build:icons",
+		"dev": "tsc --watch -p tsconfig.build.json",
+		"format": "prettier \"nodes/**/*.ts\" \"credentials/**/*.ts\" --write",
+		"lint": "eslint \"nodes/**/*.ts\" \"credentials/**/*.ts\" --max-warnings=0",
+		"lintfix": "eslint \"nodes/**/*.ts\" \"credentials/**/*.ts\" --fix",
+		"prepublishOnly": "npm run build && npm run lint"
+	},
+	"files": [
+		"dist/",
+		"README.md",
+		"example-workflow.json",
+		"LICENSE.md"
+	],
+	"n8n": {
+		"n8nNodesApiVersion": 1,
+		"credentials": [
+			"dist/credentials/WebsitePublisherApi.credentials.js"
+		],
+		"nodes": [
+			"dist/nodes/WebsitePublisher/WebsitePublisher.node.js",
+			"dist/nodes/WebsitePublisher/WebsitePublisherTrigger.node.js"
+		]
+	},
+	"devDependencies": {
+		"@typescript-eslint/parser": "^8.0.0",
+		"@typescript-eslint/eslint-plugin": "^8.0.0",
+		"eslint": "^9.0.0",
+		"gulp": "^5.0.0",
+		"n8n-workflow": "*",
+		"prettier": "^3.0.0",
+		"typescript": "^5.6.0"
+	},
+	"peerDependencies": {
+		"n8n-workflow": "*"
+	}
+}
