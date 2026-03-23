@@ -3,7 +3,7 @@ dist/
 *.js.map
 *.d.ts
 !gulpfile.js
-!.eslintrc.js
+!eslint.config.js
 .DS_Store
 *.tgz
 .env
