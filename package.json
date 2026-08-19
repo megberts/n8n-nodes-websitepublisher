@@ -10,7 +10,9 @@
 		"AI",
 		"automation",
 		"CMS",
-		"websitepublisher"
+		"websitepublisher",
+		"website",
+		"app"
 	],
 	"license": "MIT",
 	"homepage": "https://websitepublisher.ai",
