@@ -1,6 +1,6 @@
 {
 	"name": "n8n-nodes-websitepublisher",
-	"version": "1.0.0",
+	"version": "1.0.1",
 	"description": "n8n community node for WebsitePublisher.ai — AI-powered website publishing. Manage pages, data entities, assets, leads, forms, and integrations from your n8n workflows.",
 	"keywords": [
 		"n8n-community-node-package",
